@@ -1,5 +1,9 @@
 'use strict';
-//var watlunch = angular.module('watlunch', ['firebase']);
+
+var watlunch = angular.module('WatLunch', ['firebase']),
+    WatLunch = {};
+WatLunch.username = '';
+WatLunch.thedate = moment().format("YYYYMMDD");
 
 var firebase = new Firebase('https://watlunch.firebaseIO.com/'),
     authClient = new FirebaseAuthClient(firebase, function(error, user) {
@@ -11,8 +15,8 @@ var firebase = new Firebase('https://watlunch.firebaseIO.com/'),
             //console.log(user);
             $('.auth .in').hide();
             $('.auth .out, .right').show();
-            var name = user.displayName !== '' ? user.displayName : user.username;
-            $('.welcome').html('Welcome, ' + name);
+            window.WatLunch.username = user.displayName !== '' ? user.displayName : user.username;
+            $('.welcome').html('Welcome, ' + window.WatLunch.username);
         } else {
             // user is logged out
             $('.auth .out, .right').hide();
@@ -35,7 +39,7 @@ $('.login.btn-facebook').click(function() {
 
 $('.login.btn-twitter').click(function() {
     authClient.login('twitter', {
-        rememberMe: true,
+        rememberMe: true
     });
 });
 
@@ -51,18 +55,17 @@ angular.module('WatLunch', ['firebase'])
         function($scope, $timeout, angularFireCollection) {
             var url = 'https://watlunch.firebaseIO.com/restaurants';
             $scope.restaurants = angularFireCollection(new Firebase(url).limit(50));
+
             $scope.addRestaurant = function() {
-                alert();
                 $scope.restaurants.add({name: $scope.restaurant});
             }
+            $scope.vote = function(restaurant) {
+                var url = 'https://watlunch.firebaseIO.com/restaurants/' + restaurant.$id + '/votes/' + WatLunch.thedate ;
+                restaurant.votes = angularFireCollection(new Firebase(url).limit(50));
+                restaurant.votes.add({name: window.WatLunch.username});
+                console.log(restaurant.votes);
+
+                $('.vote').hide();
+            }
         }
-    ])
-    .directive('autoScroll', function($timeout) {
-        return function(scope, elements, attrs) {
-            scope.$watch("restaurants.length", function() {
-                $timeout(function() {
-                    elements[0].scrollTop = elements[0].scrollHeight;
-                });
-            });
-        }
-    });
+    ]);

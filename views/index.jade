@@ -3,31 +3,10 @@ extends layout
 block content
   section(id='watlunch', ng-controller='watlunch')
     div(class='main')
-      div(class='left')
-        div(class='auth')
-          div(class='out')
-            a log out
-          div(class='in')
-            ul
-              li
-                a(class="btn-auth btn-github large login") Sign in with <b>GitHub</b>
-              li
-                a(class="btn-auth btn-facebook large login") Sign in with <b>FriendFace</b>
-              li
-                a(class="btn-auth btn-twitter large login") Sign in with <b>Jitter</b>
-        div(class='welcome')
-          h2
-      div(class='right')
-        div(id="restaurantsDiv", auto-scroll="restaurants", style="height:500px;")
-          div(ng-cloak,  ng-repeat="restaurant in restaurants")
-            em {{restaurant.name}}
-        form(ng-submit="addRestaurant()")
-          input(id="restaurant", type="text", ng-model="restaurant", placeholder="Message...")
-          input(id="send", type="submit", id="submit", value="Send", style="font-size:24px;")
-
-
-
-
-
-
-
+      div(id="restaurantsDiv", auto-scroll="restaurants", style="height:500px;")
+        div(ng-cloak,  ng-repeat="restaurant in restaurants")
+          em {{restaurant.name}}
+          div(class='vote')
+            a(ng-click="vote(restaurant)") vote
+          ul(class='voters')
+            li(ng-cloak, ng-repeat="vote in restaurant.votes." + thedate) {{vote.name}}

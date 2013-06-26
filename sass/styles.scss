@@ -12,9 +12,15 @@ input[type="button"] {
 }
 
 body {
-  padding: 20px;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size:1.4em;
+}
+
+header {
+  background-color: #f3f3f3;
+  color: #000;
+  padding: 10px 0;
+  margin-bottom:20px;
 }
 
 a {
@@ -37,19 +43,9 @@ h2 {
 }
 
 .main {
-  width:100%;
-  text-align: left;
-}
-
-.left {
-  float:left;
-  text-align:left;
-}
-
-.right {
-  float:left;
-  text-align:left;
-  margin-left:100px;
+  width:60%;
+  text-align: center;
+  padding:20px;
 }
 
 .in ul {
@@ -65,10 +61,27 @@ h2 {
 #restaurantsDiv {
   font-size:1.4em;
 
+  em.ng-binding {
+    font-weight: bold;
+  }
+
   div {
       margin:10px 0;
   }
+
+  .vote {
+    display: inline-block;
+    font-size: .7em;
+    padding-left: 30px;
+    float: right;
+  }
+
+  .voters li {
+    list-style: none;
+    font-size: .6em;
+  }
 }
+
 
 .btn-auth.large {
   min-width: 195px;

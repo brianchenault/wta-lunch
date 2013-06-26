@@ -4,5 +4,6 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'WillowTree Apps WAT Team Lunch' });
+    var moment = require('moment');
+    res.render('index', { title: 'WillowTree Apps WAT Team Lunch', thedate: moment().format('YYYYMMDD') });
 };

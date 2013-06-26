@@ -8,10 +8,25 @@ html(ng-app="WatLunch")
   body
     header
       h1 WAT/DevOps Lunch Voting
+
+      div(class='auth')
+        div(class='out')
+          a log out
+        div(class='in')
+          ul
+            li
+              a(class="btn-auth btn-github large login") Sign in with <b>GitHub</b>
+            li
+              a(class="btn-auth btn-facebook large login") Sign in with <b>FriendFace</b>
+            li
+              a(class="btn-auth btn-twitter large login") Sign in with <b>Jitter</b>
+      div(class='welcome')
+        h2
     block content
     footer
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
     script(src='/js/lib/underscore/underscore-min.js')
+    script(src='/js/lib/moment/min/moment.min.js')
     script(src='/js/lib/angular/angular.min.js')
     script(src='https://cdn.firebase.com/v0/firebase.js')
     script(src='https://cdn.firebase.com/v0/firebase-auth-client.js')
