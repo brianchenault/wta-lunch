@@ -7,7 +7,8 @@
     "dependencies": {
         "express": "3.2.6",
         "jade": "*",
-        "compass": "*"
+        "compass": "*",
+        "bower": "*"
     },
     "name": "wat-lunch",
     "subdomain": "mindatlarge-wat-lunch",

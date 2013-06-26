@@ -4,15 +4,16 @@ html(ng-app="WatLunch")
     title= title
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300')
     link(rel='stylesheet', href='/stylesheets/social.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/styles.css')
   body
     header
       h1 WAT/DevOps Lunch Voting
     block content
     footer
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
-    script(src='/js/lib/angular.min.js')
+    script(src='/js/lib/underscore/underscore-min.js')
+    script(src='/js/lib/angular/angular.min.js')
     script(src='https://cdn.firebase.com/v0/firebase.js')
     script(src='https://cdn.firebase.com/v0/firebase-auth-client.js')
-    script(src='/js/lib/angularfire.min.js')
+    script(src='/js/lib/angularFire/angularfire.min.js')
     script(src='/js/app.js')
