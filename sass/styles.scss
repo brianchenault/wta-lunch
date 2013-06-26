@@ -49,7 +49,7 @@ h2 {
 .right {
   float:left;
   text-align:left;
-  margin-left:30px;
+  margin-left:100px;
 }
 
 .in ul {
@@ -60,6 +60,14 @@ h2 {
   list-style: none;
   margin:10px 0;
   padding:0;
+}
+
+#restaurantsDiv {
+  font-size:1.4em;
+
+  div {
+      margin:10px 0;
+  }
 }
 
 .btn-auth.large {

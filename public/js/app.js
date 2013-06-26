@@ -15,6 +15,7 @@ var firebase = new Firebase('https://watlunch.firebaseIO.com/'),
             $('.welcome').html('Welcome, ' + name);
         } else {
             // user is logged out
+            $('.auth .out, .right').hide();
         }
     });
 
