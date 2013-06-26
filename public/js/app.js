@@ -32,6 +32,12 @@ $('.login.btn-facebook').click(function() {
     });
 });
 
+$('.login.btn-twitter').click(function() {
+    authClient.login('twitter', {
+        rememberMe: true,
+    });
+});
+
 $('.out a').click(function() {
     authClient.logout();
     $('.auth .in').show();
