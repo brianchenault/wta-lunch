@@ -1,5 +1,5 @@
 {
-    "version": "0.0.1-6",
+    "version": "0.0.1-12",
     "private": true,
     "scripts": {
         "start": "node app.js"
@@ -13,6 +13,10 @@
     },
     "name": "wat-lunch",
     "subdomain": "mindatlarge-wat-lunch",
+    "domains": [
+        "wtalunch.com",
+        "www.wtalunch.com"
+    ],
     "engines": {
         "node": "0.8.x"
     }
