@@ -17,7 +17,7 @@
                 console.log(error);
             } else if (user) {
                 // user authenticated with Firebase
-                $('.auth .in').hide();
+                $('.in').hide();
                 $('.auth .out, .main').show();
                 WatLunch.username = user.displayName !== '' ? user.displayName : user.username;
                 localStorage['watlunch_username'] = WatLunch.username;
@@ -50,7 +50,7 @@
 
     $('.out a').click(function() {
         authClient.logout();
-        $('.auth .in').show();
+        $('.in').show();
         $('.auth .out, .right').hide();
         $('.welcome').html('');
     });

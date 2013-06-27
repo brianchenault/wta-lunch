@@ -2,6 +2,14 @@ extends layout
 
 block content
   section(id='watlunch', ng-controller='watlunch')
+    div(class='in')
+      ul
+        li
+          a(class="btn-auth btn-github large login") Sign in with <b>GitHub</b>
+        li
+          a(class="btn-auth btn-facebook large login") Sign in with <b>FriendFace</b>
+        li
+          a(class="btn-auth btn-twitter large login") Sign in with <b>Jitter</b>
     div(class='main')
       div(id="restaurantsDiv", auto-scroll="restaurants", style="height:500px;")
         div(ng-cloak,  ng-repeat="restaurant in restaurants")
