@@ -6,8 +6,8 @@
         WatLunch = {
             baseurl: 'https://watlunch.firebaseIO.com/',
             thedate: moment().format("YYYYMMDD"),
-            username: localStorage['watlunch_username'] ?
-                localStorage['watlunch_username'] : ''
+            username: sessionStorage['watlunch_username'] ?
+                sessionStorage['watlunch_username'] : ''
         };
 
     angular.module('WatLunch', ['firebase'])
@@ -15,7 +15,6 @@
             function($scope, $timeout, angularFireCollection) {
                 var url = WatLunch.baseurl + 'restaurants';
                 $scope.restaurants = angularFireCollection(new Firebase(url).limit(50));
-                var userVoted = false;
 
                 $scope.addRestaurant = function() {
                     $scope.restaurants.add({name: $scope.restaurant});
@@ -25,8 +24,7 @@
                     var url = WatLunch.baseurl + '/restaurants/' + restaurant.$id + '/votes/' + WatLunch.thedate ;
                     restaurant.votes = angularFireCollection(new Firebase(url).limit(50));
                     restaurant.votes.add({name: WatLunch.username});
-                    //$('.vote').remove();
-                    userVoted = true;
+                    sessionStorage.userVoted = true;
                 }
 
                 $scope.githubLogin = function() {
@@ -56,7 +54,7 @@
                 };
 
                 $scope.userHasVoted = function() {
-                    return userVoted;
+                    return sessionStorage['userVoted'];
                 };
 
                 WatLunch.authClient = new FirebaseAuthClient(new Firebase(WatLunch.baseurl),
@@ -70,7 +68,7 @@
                             // user authenticated with Firebase
                             $('.auth .out, .main').show();
                             WatLunch.username = user.displayName !== '' ? user.displayName : user.username;
-                            localStorage['watlunch_username'] = WatLunch.username;
+                            sessionStorage['watlunch_username'] = WatLunch.username;
                             $('.welcome').html('Welcome, ' + WatLunch.username);
                         } else {
                             // user is logged out
