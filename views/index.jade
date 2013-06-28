@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  section(id='watlunch', ng-controller='watlunch')
-    div(class='in')
+  section(id='watlunch')
+    div(class='in', ng-show="!user")
       ul
         li
           a(class="btn-auth btn-github large login", ng-click="githubLogin()") Sign in with <b>GitHub</b>
@@ -14,7 +14,7 @@ block content
       div(id="restaurantsDiv", auto-scroll="restaurants", class="row")
         div(ng-cloak,  ng-repeat="restaurant in restaurants", class="columns large-3")
           div(class='vote')
-            a(ng-click="vote(restaurant)") vote
+            a(ng-click="vote(restaurant)", ng-hide="userHasVoted()") vote
           em {{restaurant.name}}
           ul(class='voters')
             li(ng-cloak, ng-repeat="vote in restaurant.votes." + thedate) {{vote.name}}

@@ -5,13 +5,13 @@ html(ng-app="WatLunch")
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300')
     link(rel='stylesheet', href='/stylesheets/social.css')
     link(rel='stylesheet', href='/stylesheets/styles.css')
-  body
+  body(ng-controller='watlunch')
     header
       h1 WAT/DevOps Lunch Voting
 
       div(class='auth')
         div(class='out')
-          a log out
+          a(ng-click='logout()') log out
           div(class='welcome')
             h2
     block content
