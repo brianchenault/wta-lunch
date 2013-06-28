@@ -10,7 +10,7 @@
                 localStorage['watlunch_username'] : ''
         };
 
-    var authClient = new FirebaseAuthClient(new Firebase(WatLunch.baseurl),
+    WatLunch.authClient = new FirebaseAuthClient(new Firebase(WatLunch.baseurl),
         function(error, user) {
             if (error) {
                 // an error occurred while attempting login
@@ -28,28 +28,8 @@
             }
         });
 
-    $('.login.btn-github').click(function() {
-        authClient.login('github', {
-            rememberMe: true,
-            scope: 'user'
-        });
-    });
-
-    $('.login.btn-facebook').click(function() {
-        authClient.login('facebook', {
-            rememberMe: true,
-            scope: 'email'
-        });
-    });
-
-    $('.login.btn-twitter').click(function() {
-        authClient.login('twitter', {
-            rememberMe: true
-        });
-    });
-
     $('.out a').click(function() {
-        authClient.logout();
+        WatLunch.authClient.logout();
         $('.in').show();
         $('.auth .out, .right').hide();
         $('.welcome').html('');
@@ -69,6 +49,23 @@
                     restaurant.votes = angularFireCollection(new Firebase(url).limit(50));
                     restaurant.votes.add({name: WatLunch.username});
                     $('.vote').remove();
+                }
+                $scope.githubLogin = function() {
+                    WatLunch.authClient.login('github', {
+                        rememberMe: true,
+                        scope: 'user'
+                    });
+                }
+                $scope.facebookLogin = function() {
+                    WatLunch.authClient.login('facebook', {
+                        rememberMe: true,
+                        scope: 'email'
+                    });
+                }
+                $scope.twitterLogin = function() {
+                    WatLunch.authClient.login('twitter', {
+                        rememberMe: true
+                    });
                 }
             }
         ]);
