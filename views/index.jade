@@ -12,9 +12,8 @@ block content
           a(class="btn-auth btn-twitter large login", ng-click="twitterLogin()") Sign in with <b>Jitter</b>
     div(class='main')
       div(id="restaurantsDiv", auto-scroll="restaurants", class="row")
-        div(ng-cloak,  ng-repeat="restaurant in restaurants", class="columns large-3")
-          div(class='vote')
-            a(ng-click="vote(restaurant)", ng-hide="userHasVoted()") vote
+        div(ng-cloak,  ng-repeat="restaurant in restaurants | orderBy: votes." + thedate + ".length", class="columns large-3")
+          a(ng-click="vote(restaurant)", ng-hide="userHasVoted()", class='vote') vote
           em {{restaurant.name}}
           ul(class='voters')
             li(ng-cloak, ng-repeat="vote in restaurant.votes." + thedate) {{vote.name}}

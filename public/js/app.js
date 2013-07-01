@@ -10,9 +10,10 @@
                 sessionStorage['watlunch_username'] : ''
         };
 
-    angular.module('WatLunch', ['firebase'])
-        .controller('watlunch', ['$scope', '$timeout', 'angularFireCollection',
+    angular.module('WatLunch', ['firebase']).controller(
+        'watlunch', ['$scope', '$timeout', 'angularFireCollection',
             function($scope, $timeout, angularFireCollection) {
+
                 var url = WatLunch.baseurl + 'restaurants';
                 $scope.restaurants = angularFireCollection(new Firebase(url).limit(50));
 
@@ -20,8 +21,8 @@
                     $scope.restaurants.add({name: $scope.restaurant});
                 }
 
-                $scope.vote = function(restaurant) {
-                    var url = WatLunch.baseurl + '/restaurants/' + restaurant.$id + '/votes/' + WatLunch.thedate ;
+                $scope.vote = function(restaurant, votes) {
+                    var url = WatLunch.baseurl + 'restaurants/' + restaurant.$id + '/votes/' + WatLunch.thedate ;
                     restaurant.votes = angularFireCollection(new Firebase(url).limit(50));
                     restaurant.votes.add({name: WatLunch.username});
                     sessionStorage.userVoted = true;

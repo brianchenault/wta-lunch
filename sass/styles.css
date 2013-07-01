@@ -1063,12 +1063,19 @@ h2 {
   font-size: 1.4em; }
   #restaurantsDiv em.ng-binding {
     font-weight: bold; }
-  #restaurantsDiv div {
-    display: inline-block; }
+  #restaurantsDiv a {
+    display: inline-block;
+    margin: 0 auto; }
   #restaurantsDiv .vote {
     display: block;
     font-size: .7em;
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    width: 100px;
+    background: #00B7FF;
+    text-align: center;
+    height: 36px;
+    color: #fff;
+    line-height: 33px; }
   #restaurantsDiv .voters li {
     list-style: none;
     font-size: .6em;

@@ -84,14 +84,21 @@ h2 {
     font-weight: bold;
   }
 
-  div {
-      display:inline-block;
+  a {
+    display:inline-block;
+    margin: 0 auto;
   }
 
   .vote {
     display: block;
     font-size: .7em;
     margin-bottom: 30px;
+    width: 100px;
+    background: #00B7FF;
+    text-align: center;
+    height: 36px;
+    color: #fff;
+    line-height: 33px;
   }
 
   .voters li {
