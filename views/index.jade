@@ -2,7 +2,7 @@ extends layout
 
 block content
   section(id='watlunch')
-    div(class='in', ng-hide='isUserAuthenticated')
+    div(class='in', ng-hide='isUserAuthenticated', ng-cloak)
       ul
         li
           a(class="btn-auth btn-github large login", ng-click="githubLogin()") Sign in with <b>GitHub</b>
@@ -16,4 +16,4 @@ block content
           a(ng-click="vote(restaurant)", ng-hide="userHasVoted()", class='vote') vote
           em {{restaurant.name}}
           ul(class='voters')
-            li(ng-cloak, ng-repeat="vote in restaurant.votes." + thedate) {{vote.name}}
+            li(ng-repeat="vote in restaurant.votes." + thedate) {{vote.name}}
