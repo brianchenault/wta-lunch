@@ -72,13 +72,11 @@
                         // user authenticated with Firebase
                         session.username = user.displayName !== '' ? user.displayName : user.username;
                         sessionStorage['watlunch_username'] = session.username;
-                        $scope.isUserAuthenticated = true;
-                        $scope.welcome = 'Welcome, ' + session.username;
 
-                        // TODO: Angular should be handling this, why is it not working?
-                        $('.in').hide();
-                        $('.main, .auth, .out, .welcome').show();
-                        $('.welcome').html('Welcome, ' + session.username);
+                        $scope.$apply(function () {
+                            $scope.isUserAuthenticated = true;
+                            $scope.welcome = 'Welcome, ' + session.username;
+                        });
 
                     } else {
 
