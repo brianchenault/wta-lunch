@@ -7,8 +7,7 @@ html(ng-app="WatLunch")
     link(rel='stylesheet', href='/stylesheets/styles.css')
   body(ng-controller='watlunch')
     header
-      h1 WAT/DevOps Lunch Voting
-
+      h1 WTA Team Lunch Voting
       div(class='auth', ng-show="isUserAuthenticated", ng-cloak)
         div(class='out')
           a(ng-click='logout()') log out
@@ -16,7 +15,6 @@ html(ng-app="WatLunch")
             h2
     block content
     footer
-    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
     script(src='/js/lib/underscore/underscore-min.js')
     script(src='/js/lib/moment/min/moment.min.js')
     script(src='/js/lib/angular/angular.min.js')

@@ -1046,8 +1046,7 @@ h2 {
 
 .main {
   width: auto;
-  text-align: center;
-  padding: 20px 0; }
+  text-align: center; }
 
 .in ul {
   padding: 0; }
@@ -1061,7 +1060,7 @@ h2 {
 
 #restaurantsDiv {
   font-size: 1.4em; }
-  #restaurantsDiv em.ng-binding {
+  #restaurantsDiv h3.ng-binding {
     font-weight: bold; }
   #restaurantsDiv a {
     display: inline-block;
@@ -1079,8 +1078,11 @@ h2 {
   #restaurantsDiv .voters li {
     list-style: none;
     font-size: .6em;
-    text-align: center;
+    text-align: left;
     padding: 10px 20px 0 20px; }
+  #restaurantsDiv .count {
+    padding-top: 20px;
+    text-decoration: underline; }
 
 .btn-auth.large {
   min-width: 195px; }

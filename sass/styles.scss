@@ -60,7 +60,6 @@ h2 {
 .main {
   width:auto;
   text-align: center;
-  padding:20px 0;
 }
 
 .in ul {
@@ -80,7 +79,7 @@ h2 {
 #restaurantsDiv {
   font-size:1.4em;
 
-  em.ng-binding {
+  h3.ng-binding {
     font-weight: bold;
   }
 
@@ -106,6 +105,11 @@ h2 {
     font-size: .6em;
     text-align: left;
     padding: 10px 20px 0 20px;
+  }
+
+  .count {
+      padding-top:20px;
+      text-decoration: underline;
   }
 }
 

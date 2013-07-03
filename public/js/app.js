@@ -16,7 +16,6 @@
 
                 var url = session.baseurl + 'restaurants';
                 $scope.restaurants = angularFireCollection(new Firebase(url).limit(50));
-
                 $scope.isUserAuthenticated = (sessionStorage['watlunch_username'] || $scope.isUserAuthenticated) ? true : false;
 
                 $scope.addRestaurant = function() {

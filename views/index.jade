@@ -14,6 +14,7 @@ block content
       div(id="restaurantsDiv", auto-scroll="restaurants", class="row")
         div(ng-cloak, ng-repeat="restaurant in restaurants", class="columns large-3")
           a(ng-click="vote(restaurant)", ng-hide="userHasVoted()", class='vote') vote
-          em {{restaurant.name}}
+          h3 {{restaurant.name}}
           ul(class='voters')
             li(ng-repeat="vote in restaurant.votes." + thedate) {{vote.name}}
+              p(ng-show="$last", class="count") {{$index + 1}} votes
