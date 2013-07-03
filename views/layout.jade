@@ -9,10 +9,10 @@ html(ng-app="WatLunch")
     header
       h1 WAT/DevOps Lunch Voting
 
-      div(class='auth')
+      div(class='auth', ng-show="isUserAuthenticated")
         div(class='out')
           a(ng-click='logout()') log out
-          div(class='welcome')
+          div(class='welcome') {{welcome}}
             h2
     block content
     footer

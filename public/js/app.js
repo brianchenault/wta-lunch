@@ -2,8 +2,8 @@
 
 (function() {
 
-    var watlunch = angular.module('WatLunch', ['firebase']),
-        WatLunch = {
+    var watlunch = angular.module('session', ['firebase']),
+        session = {
             baseurl: 'https://watlunch.firebaseIO.com/',
             thedate: moment().format("YYYYMMDD"),
             username: sessionStorage['watlunch_username'] ?
@@ -14,68 +14,88 @@
         'watlunch', ['$scope', '$timeout', 'angularFireCollection',
             function($scope, $timeout, angularFireCollection) {
 
-                var url = WatLunch.baseurl + 'restaurants';
+                var url = session.baseurl + 'restaurants';
                 $scope.restaurants = angularFireCollection(new Firebase(url).limit(50));
+
+                $scope.isUserAuthenticated = (sessionStorage['watlunch_username'] || $scope.isUserAuthenticated) ? true : false;
 
                 $scope.addRestaurant = function() {
                     $scope.restaurants.add({name: $scope.restaurant});
-                }
-
-                $scope.vote = function(restaurant, votes) {
-                    var url = WatLunch.baseurl + 'restaurants/' + restaurant.$id + '/votes/' + WatLunch.thedate ;
-                    restaurant.votes = angularFireCollection(new Firebase(url).limit(50));
-                    restaurant.votes.add({name: WatLunch.username});
-                    sessionStorage.userVoted = true;
-                }
+                };
 
                 $scope.githubLogin = function() {
-                    WatLunch.authClient.login('github', {
+                    session.authClient.login('github', {
                         rememberMe: true,
                         scope: 'user'
                     });
-                }
+                };
 
                 $scope.facebookLogin = function() {
-                    WatLunch.authClient.login('facebook', {
+                    session.authClient.login('facebook', {
                         rememberMe: true,
                         scope: 'email'
                     });
-                }
+                };
 
                 $scope.twitterLogin = function() {
-                    WatLunch.authClient.login('twitter', {
+                    session.authClient.login('twitter', {
                         rememberMe: true
                     });
-                }
+                };
 
                 $scope.logout = function() {
-                    WatLunch.authClient.logout();
-                    $('.auth .out, .right').hide();
-                    $('.welcome').html('');
+                    session.authClient.logout();
+                    $scope.isUserAuthenticated = false;
+                    $scope.welcome = '';
                 };
 
                 $scope.userHasVoted = function() {
                     return sessionStorage['userVoted'];
                 };
 
-                WatLunch.authClient = new FirebaseAuthClient(new Firebase(WatLunch.baseurl),
-                    function(error, user) {
-                        $scope.user = user;
+                $scope.vote = function(restaurant, votes) {
+                    var url = session.baseurl + 'restaurants/' + restaurant.$id + '/votes/' + session.thedate ;
+                    restaurant.votes = angularFireCollection(new Firebase(url).limit(50));
+                    restaurant.votes.add({name: session.username});
+                    sessionStorage.userVoted = true;
+                };
 
-                        if (error) {
-                            // an error occurred while attempting login
-                            console.log(error);
-                        } else if (user) {
-                            // user authenticated with Firebase
-                            $('.auth .out, .main').show();
-                            WatLunch.username = user.displayName !== '' ? user.displayName : user.username;
-                            sessionStorage['watlunch_username'] = WatLunch.username;
-                            $('.welcome').html('Welcome, ' + WatLunch.username);
-                        } else {
-                            // user is logged out
-                            $('.auth .out, .main').hide();
-                        }
-                    });
-                }
+                $scope.firebaseAuthCallback = function(error, user) {
+
+                    if (error) {
+
+                        // an error occurred while attempting login
+                        console.log(error);
+
+                    } else if (user) {
+
+                        // user authenticated with Firebase
+                        session.username = user.displayName !== '' ? user.displayName : user.username;
+                        sessionStorage['watlunch_username'] = session.username;
+                        $scope.isUserAuthenticated = true;
+                        $scope.welcome = 'Welcome, ' + session.username;
+
+                        // TODO: Angular should be handling this, why is it not working?
+                        $('.in').hide();
+                        $('.main, .auth, .out, .welcome').show();
+                        $('.welcome').html('Welcome, ' + session.username);
+
+                    } else {
+
+                        // user is logged out
+                        $scope.isUserAuthenticated = false;
+
+                    }
+                };
+
+                session.authClient = new FirebaseAuthClient(new Firebase(session.baseurl), $scope.firebaseAuthCallback);
+
+                /*
+                 $scope.theSort = function(restaurant) {
+                 var votes =_.toArray(restaurant.votes[session.thedate]);
+                 return votes.length;
+                 };
+                 */
+            }
         ]);
 })();

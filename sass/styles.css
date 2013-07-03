@@ -1079,7 +1079,8 @@ h2 {
   #restaurantsDiv .voters li {
     list-style: none;
     font-size: .6em;
-    text-align: center; }
+    text-align: center;
+    padding: 5px 0; }
 
 .btn-auth.large {
   min-width: 195px; }

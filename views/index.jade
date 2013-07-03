@@ -2,7 +2,7 @@ extends layout
 
 block content
   section(id='watlunch')
-    div(class='in', ng-show="!user")
+    div(class='in', ng-hide='isUserAuthenticated')
       ul
         li
           a(class="btn-auth btn-github large login", ng-click="githubLogin()") Sign in with <b>GitHub</b>
@@ -10,9 +10,9 @@ block content
           a(class="btn-auth btn-facebook large login", ng-click="facebookLogin()") Sign in with <b>FriendFace</b>
         li
           a(class="btn-auth btn-twitter large login", ng-click="twitterLogin()") Sign in with <b>Jitter</b>
-    div(class='main')
+    div(class='main', ng-show="isUserAuthenticated")
       div(id="restaurantsDiv", auto-scroll="restaurants", class="row")
-        div(ng-cloak,  ng-repeat="restaurant in restaurants | orderBy: votes." + thedate + ".length", class="columns large-3")
+        div(ng-cloak, ng-repeat="restaurant in restaurants", class="columns large-3")
           a(ng-click="vote(restaurant)", ng-hide="userHasVoted()", class='vote') vote
           em {{restaurant.name}}
           ul(class='voters')
